@@ -18,3 +18,7 @@ h1 {
 	font-family: 'Vidaloka', serif;
 	font-size: 300%;
 }
+
+img {
+	cursor: pointer;
+}
