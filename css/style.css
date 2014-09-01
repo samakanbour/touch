@@ -1,0 +1,20 @@
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
+@import url(http://fonts.googleapis.com/css?family=Vidaloka);
+
+html, body {
+    overflow: hidden;
+    font-family: 'Lato', sans-serif;
+    background-color: #F7F8FA;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+}
+
+h1 {
+	position: fixed;
+	top: 4%;
+	left: 2%;
+	width: 200px;
+	font-family: 'Vidaloka', serif;
+	font-size: 300%;
+}
