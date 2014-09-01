@@ -11,7 +11,7 @@
     <link type="text/css" rel="stylesheet" media="all" href="css/reset.css">
     <link type="text/css" rel="stylesheet" media="all" href="css/style.css">
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script type="text/javascript" src="js/jquery.finger.js"></script>
+    <script src="https://rawgithub.com/ngryman/jquery.finger/v0.1.0/dist/jquery.finger.js"></script>
 </head>
 
 <body>
@@ -124,10 +124,18 @@
             handleMouseUp(e);
         }
 
-        function handleMouseMove(e) {
+        function handleMouseMove(e, mobile) {
+        	if (mobile) {
+        		mouseX = parseInt(e.x - offsetX);
+				mouseY = parseInt(e.y - offsetY);
+        	} else {
+        		mouseX = parseInt(e.clientX - offsetX);
+				mouseY = parseInt(e.clientY - offsetY);
+        	}
+
             if (draggingResizer > -1) {
-                mouseX = parseInt(e.clientX - offsetX);
-                mouseY = parseInt(e.clientY - offsetY);
+                // mouseX = parseInt(e.clientX - offsetX);
+                // mouseY = parseInt(e.clientY - offsetY);
                 // resize the image
                 switch (draggingResizer) {
                     case 0:
@@ -168,8 +176,6 @@
                 draw(true);
             } else if (draggingImage) {
                 imageClick = false;
-                mouseX = parseInt(e.clientX - offsetX);
-                mouseY = parseInt(e.clientY - offsetY);
                 // move the image by the amount of the latest drag
                 var dx = mouseX - startX;
                 var dy = mouseY - startY;
@@ -196,7 +202,7 @@
         $("#canvas").mouseout(function(e) {
             handleMouseOut(e);
         });
-        $("#canvas").bind("flick", function(e) {
+        $("#canvas").bind('drag', '.touch', function(e) {
         	handleMouseMove(e);
         });
     </script>
