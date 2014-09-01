@@ -126,9 +126,8 @@
 
         function handleMouseMove(e, mobile) {
         	if (mobile) {
-        		mouseX = parseInt(e.x - offsetX);
-				mouseY = parseInt(e.y - offsetY);
-				alert(e.x);
+        		mouseX = parseInt(e.x);
+				mouseY = parseInt(e.y);
         	} else {
         		mouseX = parseInt(e.clientX - offsetX);
 				mouseY = parseInt(e.clientY - offsetY);
