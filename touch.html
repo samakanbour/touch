@@ -107,9 +107,14 @@
             return (x > imageX && x < imageX + imageWidth && y > imageY && y < imageY + imageHeight);
         }
 
-        function handleMouseDown(e) {
-            startX = parseInt(e.clientX - offsetX);
-            startY = parseInt(e.clientY - offsetY);
+        function handleMouseDown(e, mobile) {
+            if (mobile) {
+        		startX = parseInt(e.x);
+				startY = parseInt(e.y);
+        	} else {
+        		startX = parseInt(e.clientX - offsetX);
+				startY = parseInt(e.clientY - offsetY);
+        	}
             draggingResizer = anchorHitTest(startX, startY);
             draggingImage = draggingResizer < 0 && hitImage(startX, startY);
         }
@@ -125,13 +130,13 @@
         }
 
         function handleMouseMove(e, mobile) {
-        	if (mobile) {
-        		mouseX = parseInt(e.x);
+			if (mobile) {
+				mouseX = parseInt(e.x);
 				mouseY = parseInt(e.y);
-        	} else {
-        		mouseX = parseInt(e.clientX - offsetX);
+			} else {
+				mouseX = parseInt(e.clientX - offsetX);
 				mouseY = parseInt(e.clientY - offsetY);
-        	}
+			}
 
             if (draggingResizer > -1) {
                 // mouseX = parseInt(e.clientX - offsetX);
@@ -190,21 +195,15 @@
                 draw(false);
             }
         }
-        $("#canvas").mousedown(function(e) {
-            handleMouseDown(e);
+
+        $("#canvas").on('press',function(e) {
+            handleMouseDown(e, true);
         });
-        $("#canvas").mousemove(function(e) {
-            handleMouseMove(e);
-        });
-        $("#canvas").mouseup(function(e) {
-            handleMouseUp(e);
-        });
-        $("#canvas").mouseout(function(e) {
-            handleMouseOut(e);
-        });
-        $("#canvas").bind('drag', '.touch', function(e) {
+
+        $("#canvas").on('drag', function(e) {
         	handleMouseMove(e, true);
         });
+
     </script>
 </body>
 
