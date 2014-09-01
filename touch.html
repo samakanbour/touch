@@ -50,11 +50,10 @@
             imageBottom = imageY + imageHeight
             draw(true);
         }
-        img.src = sources[0];
+        img.src = sources[1];
 
         function draw(withAnchors) {
-            withAnchors = false;
-
+        	withAnchors = false;
             // clear the canvas
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             // draw the image
@@ -196,6 +195,9 @@
         });
         $("#canvas").mouseout(function(e) {
             handleMouseOut(e);
+        });
+        $("#canvas").bind("flick", function(e) {
+        	alert('hello');
         });
     </script>
 </body>
