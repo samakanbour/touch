@@ -196,11 +196,13 @@
             }
         }
 
-        $("#canvas").on('press',function(e) {
+        $("#canvas").on('press', function(e) {
+        	e.preventDefault();
             handleMouseDown(e, true);
         });
 
         $("#canvas").on('drag', function(e) {
+        	e.preventDefault();
         	handleMouseMove(e, true);
         });
 
